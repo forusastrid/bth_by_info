@@ -1,0 +1,121 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 400px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #333;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+.paper {
+    display: none;
+    width: 200px;
+    height: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    animation: shake 1s ease-in-out infinite; /* 종이 흔들림 애니메이션 추가 */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.paper:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 0, 0.5);
+    transform: translateX(-50%) rotate(-5deg);
+    transition: opacity 0.5s;
+}
+
+@keyframes flutter {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    75% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.leaderboard {
+    position: absolute;
+    right: -20px;
+    top: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 150px;
+}
+
+.leaderboard h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+#prize-list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1em;
+    color: #555;
+}
