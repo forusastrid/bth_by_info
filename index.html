@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH_by_INFO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="infologo.jpg" rel="shortcut icon" type="image/x-icon">
+    <style>
+        body {
+            position: relative;
+            overflow: hidden; /* 애니메이션이 화면 밖으로 나가지 않게 함 */
+        }
+
+        .animate-text {
+            position: absolute;
+            opacity: 0;
+            font-size: 100px; /* 텍스트 크기 증가 */
+            font-weight: bold;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* 무지개 색상 */
+            -webkit-background-clip: text; /* 텍스트 배경 클립 */
+            -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 설정 */
+            writing-mode: vertical-lr; /* 세로 텍스트 */
+        }
+
+        .animate-text1 {
+            position: absolute;
+            opacity: 0;
+            font-size: 100px; /* 텍스트 크기 증가 */
+            font-weight: bold;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* 무지개 색상 */
+            -webkit-background-clip: text; /* 텍스트 배경 클립 */
+            -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 설정 */
+        }
+        
+        .text1 {
+            top: 20px;
+            left: 20px;
+            animation: slideDown 2s forwards;
+        }
+
+        .text2 {
+            top: 100px; /* 세로 간격 조정 */
+            right: 20px; /* 오른쪽으로 위치 조정 */
+            animation: slideDown 2s forwards 1s; /* 1초 지연 */
+        }
+
+        .text3 {
+            top: 40px; /* 가운데 위치 조정 */
+            left: 50%;
+            transform: translateX(-50%); /* 가운데 정렬 */
+            font-size: 80px; /* 더 크게 설정 */
+            animation: slideRight 2s forwards 2s; /* 2초 지연 */
+        }
+
+        .text4 {
+            bottom: 20px; /* 하단 위치 조정 */
+            left: 20px; /* 왼쪽 위치 조정 */
+            font-size: 80px; /* 텍스트 크기 */
+            animation: slideUp 2s forwards 3s; /* 3초 지연 */
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            0% {
+                opacity: 0;
+                transform: rotate(0deg);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(1440deg);
+            }
+        }
+
+        .rotating-image {
+            position: absolute;
+            bottom: 0px; /* 하단 위치 조정 */
+            right: 20px; /* 오른쪽 위치 조정 */
+            animation: rotateIn 2s forwards; /* 회전 애니메이션 */
+            width: 1000px; /* 이미지 크기 조정 (필요에 따라 조정) */
+            height: auto; /* 비율 유지 */
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <h2>학번 입력</h2>
+        <input type="text" id="student-id" placeholder="5자리 숫자 입력" maxlength="5">
+        <button onclick="submitStudentId()">제출</button>
+    </div>
+
+    <div class="animate-text text1">즐겁다</div>
+    <div class="animate-text text2">재밌다</div>
+    <div class="animate-text1 text3">신난다</div>
+    <div class="animate-text1 text4">인포테라피</div>
+    <img src="좆같노.png" alt="Rotating Image" class="rotating-image" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase 초기화 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyBR88SDrX_6Vio0YNrC-_q-8-ns6-pa8m0",
+            authDomain: "heeseong.firebaseapp.com",
+            projectId: "heeseong",
+            storageBucket: "heeseong.firebasestorage.app",
+            messagingSenderId: "1035762537334",
+            appId: "1:1035762537334:web:b38a865938943a9ab56057",
+            measurementId: "G-4P4JYTL0E4"
+        };
+
+        // Firebase 초기화
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(); // Firestore 초기화
+        
+        function submitStudentId() {
+            const studentId = document.getElementById('student-id').value.trim();
+            if (studentId.length === 5 && /^\d+$/.test(studentId)) {
+                // 학번을 localStorage에 저장
+                localStorage.setItem('studentId', studentId);
+
+                // Firestore에 학번 저장
+                db.collection('students').doc(studentId).set({
+                    id: studentId,
+                    ticket: null // 기본적으로 학생의 티켓 정보를 null로 설정
+                }).then(() => {
+                    window.location.href = 'privacy.html'; // 티켓 선택 페이지로 이동
+                }).catch((error) => {
+                    alert("학번 저장 오류: " + error);
+                });
+            } else {
+                alert("유효한 5자리 숫자를 입력하세요.");
+            }
+        }
+    </script>
+</body>
+</html>

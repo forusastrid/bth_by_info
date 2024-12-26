@@ -1,0 +1,160 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle, #ffffff, #b0e0f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#main-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid #87cefa;
+    transition: transform 0.3s ease;
+    animation: scaleUp 0.5s ease;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+h1, h2 {
+    color: #000000;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+h3 {
+    color: #87cefa;
+    margin-top: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#student-id, #approval-code {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #87cefa;
+    border-radius: 8px;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+    margin-bottom: 30px;
+}
+
+#student-id:focus, #approval-code:focus {
+    border-color: #00bfff;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 20px 30px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+    background-color: #333333;
+    transform: translateY(-4px);
+}
+
+button:focus {
+    outline: none;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(135, 206, 250, 0.3);
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button span {
+    position: relative;
+    z-index: 1;
+}
+
+#message {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    font-size: 18px;
+    text-align: center;
+}
+
+.locked {
+    background: rgba(200, 200, 200, 0.9);
+    color: #7d7d7d;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.locked::before {
+    content: '🔒';
+    font-size: 50px;
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#booth-list {
+    background: rgba(255, 255, 255, 0.8); /* 배경색을 하얀색으로 설정 */
+    border: 2px solid #87cefa; /* 연한 하늘색 테두리 */
+    border-radius: 10px; /* 모서리를 둥글게 */
+    padding: 20px; /* 내부 여백 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    margin-top: 30px; /* 상단 여백 */
+    max-height: 400px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+    text-align: center; /* 글자 가운데 정렬 */
+    font-size: 18px; /* 글자 크기 */
+    color: #333333; /* 글자 색상 */
+}
+
+#booth-list p {
+    margin: 10px 0; /* 각 문단의 상하 여백 */
+    line-height: 1.5; /* 줄 간격 */
+}
+
+#booth-list h4 {
+    color: #87cefa; /* 제목 색상 */
+    margin-bottom: 15px; /* 제목 아래 여백 */
+    font-weight: bold; /* 제목 두껍게 */
+    text-shadow: 0 0 5px rgba(135, 206, 250, 0.5); /* 제목 그림자 효과 */
+}

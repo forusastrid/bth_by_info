@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTH_by_INFO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="infologo.jpg" rel="shortcut icon" type="image/x-icon">
+    <style>
+        .agreement-block {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px; /* 폰트 크기 축소 */
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <h2>개인정보 활용 동의서</h2>
+        <p>개인정보 활용 동의서를 읽고 동의하십니까?</p>
+        <label>
+            <input type="radio" name="agreement" value="agree"> 동의
+        </label>
+        <label>
+            <input type="radio" name="agreement" value="disagree"> 비동의
+        </label>
+        <button onclick="checkAgreement()">다음</button>
+
+        <div class="agreement-block">
+            <h4>제1조 (개인정보의 처리 목적)</h4>
+            <p>회원 가입 및 관리, 서비스 제공 및 개선을 위해 개인정보를 처리합니다.</p>
+
+            <h4>제2조 (처리하는 개인정보 항목)</h4>
+            <p>필수항목: 학번</p>
+
+            <h4>제3조 (처리 및 보유 기간)</h4>
+            <p>법령에 따른 보유 기간 내에서 개인정보를 처리·보유합니다.</p>
+
+            <h4>제4조 (제3자 제공)</h4>
+            <p>정보주체의 동의가 있거나 법령에 의한 경우를 제외하고는 제공하지 않습니다.</p>
+
+            <h4>제5조 (처리 위탁)</h4>
+            <p>원활한 업무 처리를 위해 위탁하며, 위탁 기간은 계약 종료 시까지입니다.</p>
+
+            <h4>제6조 (권리 및 행사 방법)</h4>
+            <p>개인정보 열람, 정정, 삭제 등의 권리를 행사할 수 있습니다.</p>
+
+            <h4>제7조 (안전성 확보 조치)</h4>
+            <p>관리적, 기술적, 물리적 조치를 통해 안전성을 확보합니다.</p>
+
+            <h4>제8조 (변경)</h4>
+            <p>개인정보처리방침은 12/27부터 적용됩니다.</p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase 초기화 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyBR88SDrX_6Vio0YNrC-_q-8-ns6-pa8m0",
+            authDomain: "heeseong.firebaseapp.com",
+            projectId: "heeseong",
+            storageBucket: "heeseong.firebasestorage.app",
+            messagingSenderId: "1035762537334",
+            appId: "1:1035762537334:web:b38a865938943a9ab56057",
+            measurementId: "G-4P4JYTL0E4"
+        };
+
+        // Firebase 초기화
+        const app = firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(app);
+        const auth = firebase.auth();
+        const db = firebase.firestore(); // Firestore 초기화
+
+        function checkAgreement() {
+            const agreement = document.querySelector('input[name="agreement"]:checked');
+            if (!agreement) {
+                alert("동의 여부를 선택하세요.");
+                return;
+            }
+
+            if (agreement.value === 'agree') {
+                // Firestore에서 이용권 정보 가져오기
+                db.collection('tickets').doc('selectedTicket').get().then((doc) => {
+                    if (doc.exists) {
+                        const selectedTicket = doc.data().ticket;
+                        if (selectedTicket) {
+                            window.location.href = 'select_ticket.html';
+                        } else {
+                            alert("이용권이 선택되지 않았습니다.");
+                        }
+                    } else {
+                        alert("이용권 정보가 없습니다.");
+                    }
+                }).catch((error) => {
+                    console.error("데이터 가져오기 오류: ", error);
+                });
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
