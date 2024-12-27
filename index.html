@@ -11,51 +11,6 @@
             position: relative;
             overflow: hidden; /* 애니메이션이 화면 밖으로 나가지 않게 함 */
         }
-
-        .animate-text {
-            position: absolute;
-            opacity: 0;
-            font-size: 260px; /* 텍스트 크기 증가 */
-            font-weight: bold;
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* 무지개 색상 */
-            -webkit-background-clip: text; /* 텍스트 배경 클립 */
-            -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 설정 */
-            writing-mode: vertical-lr; /* 세로 텍스트 */
-        }
-
-        .animate-text1 {
-            position: absolute;
-            opacity: 0;
-            font-size: 250px; /* 텍스트 크기 증가 */
-            font-weight: bold;
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); /* 무지개 색상 */
-            -webkit-background-clip: text; /* 텍스트 배경 클립 */
-            -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 설정 */
-        }
-        
-        .text1 {
-            top: 20px;
-            left: 20px;
-            animation: slideDown 2s forwards;
-        }
-
-        .text3 {
-            top: 40px; /* 가운데 위치 조정 */
-            left: 50%;
-            transform: translateX(-50%); /* 가운데 정렬 */
-            font-size: 250px; /* 더 크게 설정 */
-            animation: slideRight 2s forwards 2s; /* 2초 지연 */
-        }
-
-        .text4 {
-            bottom: 20px; /* 하단 위치 조정 */
-            left: 500px; /* 왼쪽 위치 조정 */
-            font-size: 170px; /* 텍스트 크기 */
-            animation: slideUp 2s forwards 3s; /* 3초 지연 */
-        }
-
         @keyframes slideDown {
             0% {
                 opacity: 0;
@@ -100,14 +55,6 @@
             }
         }
 
-        .rotating-image {
-            position: absolute;
-            bottom: 0px; /* 하단 위치 조정 */
-            right: 20px; /* 오른쪽 위치 조정 */
-            animation: rotateIn 2s forwards; /* 회전 애니메이션 */
-            width: 1400px; /* 이미지 크기 조정 (필요에 따라 조정) */
-            height: auto; /* 비율 유지 */
-        }
     </style>
 </head>
 <body>
@@ -116,12 +63,6 @@
         <input type="text" id="student-id" placeholder="5자리 숫자 입력" maxlength="5">
         <button onclick="submitStudentId()">제출</button>
     </div>
-
-    <div class="animate-text text1">즐겁다</div>
-    <div class="animate-text text2">재밌다</div>
-    <div class="animate-text1 text3">신난다</div>
-    <div class="animate-text1 text4">인포테라피</div>
-    <img src="좆같노.png" alt="Rotating Image" class="rotating-image" />
 
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
